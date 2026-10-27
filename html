@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quiz K-Pop: Missão da Acentuação</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:#121212;
+color:white;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:20px;
+}
+
+.card{
+background:#1f1f1f;
+padding:20px;
+border-radius:20px;
+box-shadow:0 0 20px rgba(0,0,0,.5);
+}
+
+h1{
+text-align:center;
+color:#ffd700;
+}
+
+#fase{
+font-size:28px;
+font-weight:bold;
+color:#00e5ff;
+margin-bottom:10px;
+}
+
+#grupo{
+font-size:22px;
+margin-bottom:15px;
+}
+
+img{
+width:100%;
+max-width:650px;
+height:350px;
+object-fit:cover;
+display:block;
+margin:auto;
+border-radius:15px;
+border:3px solid white;
+}
+
+#pergunta{
+font-size:24px;
+font-weight:bold;
+margin:20px 0;
+}
+
+.opcao{
+width:100%;
+padding:15px;
+margin:8px 0;
+border:none;
+border-radius:10px;
+background:#363636;
+color:white;
+font-size:18px;
+cursor:pointer;
+}
+
+.opcao:hover{
+background:#4d4d4d;
+}
+
+.correct{
+background:#00c853 !important;
+}
+
+.wrong{
+background:#d50000 !important;
+}
+
+#next{
+display:none;
+margin-top:15px;
+width:100%;
+padding:15px;
+border:none;
+border-radius:10px;
+background:#2962ff;
+color:white;
+font-size:18px;
+cursor:pointer;
+}
+
+#score{
+text-align:center;
+margin-top:15px;
+font-size:22px;
+color:#ffd700;
+}
+
+.progress-bar{
+height:20px;
+background:#444;
+border-radius:10px;
+margin:15px 0;
+overflow:hidden;
+}
+
+#progress{
+height:100%;
+width:0%;
+background:#00c853;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<div class="card">
+
+<h1>🎤 QUIZ K-POP: MISSÃO DA ACENTUAÇÃO</h1>
+
+<div id="fase"></div>
+<div id="grupo"></div>
+
+<img id="imagem">
+
+<div class="progress-bar">
+<div id="progress"></div>
+</div>
+
+<div id="pergunta"></div>
+<div id="respostas"></div>
+
+<button id="next">Próxima Pergunta ➜</button>
+
+<div id="score">Pontos: 0</div>
+
+</div>
+</div>
+
+<script>
+
+const perguntas = [
+
+{
+fase:"🎀 FASE 1 - FÁCIL",
+grupo:"ILLIT",
+imagem:"images/yunju.jpg",
+pergunta:"Yunah e Minju querem escrever uma palavra corretamente. Qual é a forma certa?",
+opcoes:["Musica","Música","Musíca","Mùsica"],
+correta:1
+},
+
+{
+fase:"🎀 FASE 1 - FÁCIL",
+grupo:"ILLIT",
+imagem:"images/moka iroha e wonhee.webp",
+pergunta:"Moka, Wonhee e Iroha encontraram uma palavra acentuada. Qual é ela?",
+opcoes:["Grupo","Show","Fã","Palco"],
+correta:2
+},
+
+{
+fase:"🔥 FASE 2 - MÉDIO",
+grupo:"CORTIS",
+imagem:"images/martin e james.webp",
+pergunta:"Martin e James procuram uma palavra que não leva acento.",
+opcoes:["Álbum","Música","Coreia","Público"],
+correta:2
+},
+
+{
+fase:"🔥 FASE 2 - MÉDIO",
+grupo:"CORTIS",
+imagem:"images/kjs.jpg",
+pergunta:"Keonho, Juhoon e Seonghyeon querem classificar a palavra 'ídolo'.",
+opcoes:["Oxítona","Paroxítona","Proparoxítona","Monossílabo"],
+correta:2
+},
+
+{
+fase:"🌟 FASE 3 - DIFÍCIL",
+grupo:"LE SSERAFIM",
+imagem:"images/cse.jpg",
+pergunta:"Chaewon, Sakura e Eunchae classificam a palavra 'fácil'.",
+opcoes:["Oxítona","Paroxítona","Proparoxítona","Monossílabo"],
+correta:1
+},
+
+{
+fase:"🌟 FASE 3 - DIFÍCIL",
+grupo:"LE SSERAFIM",
+imagem:"images/yk.jpg",
+pergunta:"Yunjin e Kazuha procuram uma oxítona acentuada.",
+opcoes:["Álbum","Café","Música","Ídolo"],
+correta:1
+},
+
+{
+fase:"💎 FASE 4 - IMPOSSÍVEL",
+grupo:"KATSEYE",
+imagem:"images/sl.jpg",
+pergunta:"Sophia e Lara procuram uma palavra com hiato.",
+opcoes:["Saída","Grupo","Jovem","Fácil"],
+correta:0
+},
+
+{
+fase:"💎 FASE 4 - IMPOSSÍVEL",
+grupo:"KATSEYE",
+imagem:"images/danon.jpg",
+pergunta:"Daniela e Manon estudam o Novo Acordo Ortográfico.",
+opcoes:["Ideia","Música","Árvore","História"],
+correta:0
+},
+
+{
+fase:"💎 FASE 4 - IMPOSSÍVEL",
+grupo:"KATSEYE",
+imagem:"images/meichae.jpg",
+pergunta:"Megan e Yoonchae procuram palavra com ditongo aberto sem acento.",
+opcoes:["Plateia","Música","Álbum","Público"],
+correta:0
+},
+
+{
+fase:"⚡ FASE 5 - MEGA IMPOSSÍVEL",
+grupo:"STRAY KIDS",
+imagem:"images/bangknow.jpg",
+pergunta:"Bang Chan e Lee Know procuram a grafia correta.",
+opcoes:["Vôo","Voo","Voô","Vôô"],
+correta:1
+},
+
+{
+fase:"⚡ FASE 5 - MEGA IMPOSSÍVEL",
+grupo:"STRAY KIDS",
+imagem:"images/chanjin.jpg",
+pergunta:"Changbin e Hyunjin procuram palavra semelhante a 'plateia'.",
+opcoes:["Jiboia","Música","Álbum","Público"],
+correta:0
+},
+
+{
+fase:"⚡ FASE 5 - MEGA IMPOSSÍVEL",
+grupo:"STRAY KIDS",
+imagem:"images/hanlix.jpg",
+pergunta:"Han e Felix querem saber por que 'país' recebe acento.",
+opcoes:["Hiato","Oxítona","Paroxítona","Monossílabo"],
+correta:0
+},
+
+{
+fase:"⚡ FASE 5 - MEGA IMPOSSÍVEL",
+grupo:"STRAY KIDS",
