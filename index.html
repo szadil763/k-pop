@@ -261,3 +261,103 @@ correta:0
 {
 fase:"⚡ FASE 5 - MEGA IMPOSSÍVEL",
 grupo:"STRAY KIDS",
+imagem:"images/seungin.jpg",
+pergunta:"Seungmin e I.N procuram uma palavra proparoxítona.",
+opcoes:["Música","Café","Jacaré","País"],
+correta:0
+}
+
+];
+
+let atual = 0;
+let pontos = 0;
+let respondeu = false;
+let terminou = false;
+
+const $ = id => document.getElementById(id);
+const imagem = $("imagem");
+
+// Se a foto não existir, esconde a imagem em vez de mostrar um ícone quebrado
+imagem.onerror = () => { imagem.style.display = "none"; };
+
+function mostrarPergunta(){
+  const p = perguntas[atual];
+  respondeu = false;
+
+  $("fase").textContent = p.fase;
+  $("grupo").textContent = "🎵 " + p.grupo;
+  imagem.style.display = "block";
+  imagem.alt = p.grupo;
+  imagem.src = encodeURI(p.imagem);
+  $("pergunta").textContent = p.pergunta;
+  $("progress").style.width = (atual / perguntas.length * 100) + "%";
+
+  $("next").style.display = "none";
+  $("next").textContent = (atual === perguntas.length - 1)
+    ? "Ver resultado ➜"
+    : "Próxima Pergunta ➜";
+
+  const caixa = $("respostas");
+  caixa.innerHTML = "";
+  p.opcoes.forEach((texto, i) => {
+    const botao = document.createElement("button");
+    botao.className = "opcao";
+    botao.textContent = texto;
+    botao.onclick = () => responder(i, botao);
+    caixa.appendChild(botao);
+  });
+}
+
+function responder(escolhida, botao){
+  if (respondeu) return;
+  respondeu = true;
+
+  const p = perguntas[atual];
+  const botoes = document.querySelectorAll(".opcao");
+
+  botoes[p.correta].classList.add("correct");
+  if (escolhida === p.correta){
+    pontos++;
+  } else {
+    botao.classList.add("wrong");
+  }
+
+  $("score").textContent = "Pontos: " + pontos;
+  $("next").style.display = "block";
+}
+
+function fim(){
+  terminou = true;
+  $("progress").style.width = "100%";
+  $("fase").textContent = "🏆 FIM DE JOGO";
+  $("grupo").textContent = "";
+  imagem.style.display = "none";
+  $("pergunta").textContent = "Você acertou " + pontos + " de " + perguntas.length + " perguntas!";
+  $("respostas").innerHTML = "";
+  $("next").textContent = "Jogar de novo ↺";
+  $("next").style.display = "block";
+}
+
+$("next").onclick = () => {
+  if (terminou){
+    atual = 0;
+    pontos = 0;
+    terminou = false;
+    $("score").textContent = "Pontos: 0";
+    mostrarPergunta();
+    return;
+  }
+  atual++;
+  if (atual < perguntas.length){
+    mostrarPergunta();
+  } else {
+    fim();
+  }
+};
+
+mostrarPergunta();
+
+</script>
+
+</body>
+</html>
