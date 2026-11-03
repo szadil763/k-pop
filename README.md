@@ -48,8 +48,8 @@ Se uma foto não existir, o jogo continua funcionando e apenas não mostra a ima
 Arquivos esperados pelo código:
 
 - `yunju.jpg`
-- `moka iroha e wonhee.webp`
-- `martin e james.webp`
+- `moka iroha e wonhee.jpg`
+- `martin e james.jpg`
 - `kjs.jpg`
 - `cse.jpg`
 - `yk.jpg`
