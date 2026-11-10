@@ -8,7 +8,7 @@ Quiz educativo em HTML puro sobre acentuação em português, com tema K-Pop. Pr
 - Idioma da interface e dos comentários: português do Brasil.
 - O jogo é publicado no GitHub Pages a partir da branch `main`, pasta raiz.
 - Imagens ficam em `images/`. Os nomes precisam bater exatamente com os do código (o GitHub diferencia maiúsculas de minúsculas).
-- Cada pergunta da lista `perguntas` tem: `fase`, `grupo`, `imagem`, `pergunta`, `opcoes` e `correta` (posição da resposta certa, começando em 0).
+- Cada pergunta da lista `perguntas` tem: `fase`, `grupo`, `imagem`, `pergunta`, `opcoes` e `correta` (posição da resposta certa, começando em 0). Opcional: `foco`, que escolhe qual parte da foto aparece (ex.: `"center 20%"` mostra mais o topo, onde costumam estar os rostos).
 
 ## Cuidados ao alterar
 

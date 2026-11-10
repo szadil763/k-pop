@@ -226,6 +226,7 @@ correta:0
 fase:"💎 FASE 4 - IMPOSSÍVEL",
 grupo:"KATSEYE",
 imagem:"images/meichae.jpg",
+foco:"center 22%",
 pergunta:"Megan e Yoonchae procuram palavra com ditongo aberto sem acento.",
 opcoes:["Plateia","Música","Álbum","Público"],
 correta:0
@@ -235,6 +236,7 @@ correta:0
 fase:"⚡ FASE 5 - MEGA IMPOSSÍVEL",
 grupo:"STRAY KIDS",
 imagem:"images/bangknow.jpg",
+foco:"center 32%",
 pergunta:"Bang Chan e Lee Know procuram a grafia correta.",
 opcoes:["Vôo","Voo","Voô","Vôô"],
 correta:1
@@ -244,6 +246,7 @@ correta:1
 fase:"⚡ FASE 5 - MEGA IMPOSSÍVEL",
 grupo:"STRAY KIDS",
 imagem:"images/chanjin.jpg",
+foco:"center 10%",
 pergunta:"Changbin e Hyunjin procuram palavra semelhante a 'plateia'.",
 opcoes:["Jiboia","Música","Álbum","Público"],
 correta:0
@@ -289,6 +292,8 @@ function mostrarPergunta(){
   imagem.style.display = "block";
   imagem.alt = p.grupo;
   imagem.src = encodeURI(p.imagem);
+  // "foco" (opcional) escolhe qual parte da foto aparece, ex.: "center 20%" mostra mais o topo
+  imagem.style.objectPosition = p.foco || "center";
   $("pergunta").textContent = p.pergunta;
   $("progress").style.width = (atual / perguntas.length * 100) + "%";
 
